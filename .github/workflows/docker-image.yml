@@ -10,15 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-
-      - name: Build & Push to Docker Hub
-        uses: opspresso/action-docker@master
-        with:
-          args: --docker
-        env:
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          TAG_NAME: "v0.0.1"
-          BUILDX: "true"
+      - name: Docker Login
+        run : docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+      - name: BUild
+        run: docker build .
