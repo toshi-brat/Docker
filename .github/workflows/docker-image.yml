@@ -22,7 +22,8 @@ jobs:
         name: Build & push Docker image
         with:
           image: toshibrat/my-images
-          tags: $ {{ steps.tags.outputs.new_tags }}
+          #tags: $ {{ steps.tags.outputs.new_tags }}
+          addLatest: true
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
